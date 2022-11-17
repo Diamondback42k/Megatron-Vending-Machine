@@ -3,9 +3,11 @@ package com.techelevator.application;
 public abstract class Item {
 
     private String name;
-    private int price;                 //Create our variables for our items
+    private double price;
+    private String location;
+    private String type;      //Create our variables for our items
 
-    public Item( String name, int price) {
+    public Item( String name, double price) {
 
         this.name = name;
         this.price = price;
@@ -17,7 +19,7 @@ public abstract class Item {
 
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -26,7 +28,7 @@ public abstract class Item {
         this.name = name;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;             //Private or public?
     }
 

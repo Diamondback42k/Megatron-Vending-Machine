@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class VendingMachine implements Item1 {
+public class VendingMachine  {
 
-    private static List<String> items = new ArrayList<>();
+    private static List<Item> items = new ArrayList<>();
 
     public void loadFile() {
 
@@ -23,8 +23,7 @@ public class VendingMachine implements Item1 {
             while(Scanner.hasNext()) {
                 String line = scanner.nextLine();
                 String [] lineArr = line.split("\\,");
-                Item1 item = new Item1(lineArr[0], lineArr[1], Double.parseDouble(lineArr[2]), lineArr[3]);
-
+                Item item = new Item(lineArr[0], lineArr[1], Double.parseDouble(lineArr[2]), lineArr[3]);
                 items.add(item);
                 }
             }catch(FileNotFoundException e){
@@ -48,7 +47,7 @@ public class VendingMachine implements Item1 {
 
                 if (choice.equals("display")) {
                     System.out.println("Display Vending Items");
-                    for(Item1 item: items){
+                    for(Item item: items){
                         System.out.println(item);
                     }
 
