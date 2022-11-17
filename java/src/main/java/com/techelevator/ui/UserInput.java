@@ -12,8 +12,7 @@ public class UserInput
 {
     private static Scanner scanner = new Scanner(System.in);
 
-    public static String getHomeScreenOption()
-    {
+    public static String getHomeScreenOption() {
         System.out.println("What would you like to do?");
         System.out.println();
 
@@ -25,26 +24,38 @@ public class UserInput
         System.out.print("Please select an option: ");
 
         String selectedOption = scanner.nextLine();
-        String option = selectedOption.trim().toLowerCase();
+        String option = selectedOption.trim();
 
-        if (option.equals("D"))
-        {
-            return "display";
-        }
-        else if (option.equals("P"))
-        {
-            return "purchase";
-        }
-        else if (option.equals("E"))
-        {
-            return "exit";
-        }
-        else
-        {
+        if (option.equals("D")) {
+            return "Display Vending Items";
+        } else if (option.equals("P")) {
+            return "Purchase";
+        } else if (option.equals("E")) {
+            return "Exit";
+        } else {
             return "";
         }
+    }
+        public static String getSecondMenuOption(){
+            String choice = scanner.nextLine();
+
+            if(choice.equals("M")){
+                return "Feed Money";
+            }else if(choice.equals("S")){
+                return "Select Item";
+            }else if(choice.equals("F")){
+                return "Finish Transaction";
+            }else{
+                return "";
+            }
+
+
+
+
+    }
+
 
     }
 
     
-}
+

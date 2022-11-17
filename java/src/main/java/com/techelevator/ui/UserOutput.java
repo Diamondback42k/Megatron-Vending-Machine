@@ -29,4 +29,25 @@ public class UserOutput
         System.out.println();
     }
 
+    public static void displayLevel1Options(){
+        System.out.println("(D) Display Vending Items");
+        System.out.println("(P) Purchase");
+        System.out.println("(E) Exit");
+    }
+
+    public static void displayLevel2Options(){
+
+//        double moneyProvided =
+
+        System.out.println("(M) Feed Money");
+        System.out.println("(S) Select Item");
+        System.out.println("(F) Finish Transaction");
+
+        System.out.println("Current Money Provided: ");  //have a userInput object for the current money provided
+    }
+
+
+
+
+
 }
