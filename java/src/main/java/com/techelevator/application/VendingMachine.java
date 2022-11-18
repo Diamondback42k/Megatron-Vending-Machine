@@ -1,5 +1,6 @@
 package com.techelevator.application;
 
+import com.techelevator.models.Item;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
 
@@ -7,9 +8,41 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
-public class VendingMachine {
+public class VendingMachine implements Item1{
+
+    private static List<Item> items = new ArrayList<>();
+
+    public void loadFile() {
+
+        File catering = new File("catering.csv");
+
+        try {
+
+            Scanner scanner = new Scanner(catering);
+
+            while(scanner.hasNext()) {
+
+                String line = scanner.nextLine();
+                String [] lineArr = line.split("\\,");
+
+                String itemLocation = lineArr[0];  //Map method identify and give value to each slot, Map<String, Integer>
+                String name = lineArr[1];
+                double price = Double.parseDouble(lineArr[2]);
+                String type = lineArr[3];
+
+                Item food = new Item(itemLocation, name, price, type);
+                items.add(food);
+            }
+
+        }catch(FileNotFoundException e){
+            System.out.println("Problem with file");
+        }
+
+    }
+
     public void run(){
         loadFile();
         while (true) {
@@ -22,39 +55,17 @@ public class VendingMachine {
                 for(Item item: items){
                     System.out.println(item);
                 }
-                // display the vending machine slots
+
             } else if (option.equals("P")) {
                 secondMenuOption();
             } else if (option.equals("E")) {
-                // good bye
+
                 break;
             }
         }
     }
-    private static List<Item> items = new ArrayList<>();
 
-    public void loadFile() {
-        File catering = new File("catering.csv");
 
-//        //I want to say, "IF File == catering, then run File catering
-        try {
-            Scanner scanner = new Scanner(catering);
-            while(scanner.hasNext()) {
-                String line = scanner.nextLine();
-                String [] lineArr = line.split("\\,");
-                String itemLocation = lineArr[0];
-                String name = lineArr[1];
-                double price = Double.parseDouble(lineArr [2]);
-                String type = lineArr[3];
-                int quantity = 6;
-                Item item = new Item(lineArr[0], lineArr[1], Double.parseDouble(lineArr[2]),lineArr[3]);
-                items.add(item);
-            }
-        }catch(FileNotFoundException e){
-            System.out.println("Problem with file");
-        }
-            File catering1 = new File("catering1.csv");
-    }
     public static void secondMenuOption(){
         boolean stay = true;
         while(stay){
@@ -72,8 +83,30 @@ public class VendingMachine {
         }
     }
 
+    @Override
+    public String getLocation() {
+        return null;
+    }
 
+    @Override
+    public String getName() {
+        return null;
+    }
 
+    @Override
+    public String getType() {
+        return null;
+    }
+
+    @Override
+    public double getPrice() {
+        return 0;
+    }
+
+    @Override
+    public Map<String, Integer> getInventory() {
+        return null;
+    }
 
 
 //        public void loadFile2(){

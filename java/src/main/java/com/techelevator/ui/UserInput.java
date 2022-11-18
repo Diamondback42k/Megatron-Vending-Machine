@@ -22,11 +22,11 @@ public class UserInput {
         String option = selectedOption.trim();
 
         if (option.equals("D")) {
-            return "Display Vending Items";
+            return "display";
         } else if (option.equals("P")) {
-            return "Purchase";
+            return "purchase";
         } else if (option.equals("E")) {
-            return "Exit";
+            return "exit";
         } else {
             return "";
         }
@@ -48,12 +48,14 @@ public class UserInput {
 
     public static String getCurrentMoneyProvided() {
         String currentMoney = scanner.nextLine();
-        System.out.println("Current Money Provided: ");
         double currentBalance = 0.00;
-//        if (currentMoney = 0)
-        return Double.toString(currentBalance);
+
+            return Double.toString(currentBalance);
+
+        }
+
     }
-}
+
 
     
 
