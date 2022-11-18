@@ -33,6 +33,7 @@ public class UserInput {
     }
 
     public static String getSecondMenuOption() {
+        System.out.println();
         System.out.println("Enter choice:");
         String choice = scanner.nextLine();
         if (choice.equals("M")) {
@@ -47,8 +48,9 @@ public class UserInput {
     }
 
     public static String getCurrentMoneyProvided() {
+        System.out.println();
+        System.out.println("Money:"); //TO BE DISCUSSED, NAME
         String depositedMoney = scanner.nextLine();
-
         double currentBalance = 0.00;
 
         if (depositedMoney.equals("1.00")) {

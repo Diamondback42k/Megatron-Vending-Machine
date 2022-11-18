@@ -42,7 +42,8 @@ public class UserOutput {
             System.out.println("(M) Feed Money");
             System.out.println("(S) Select Item");
             System.out.println("(F) Finish Transaction");
-            System.out.println("Current Money Provided: ");
+            System.out.println();
+            System.out.println("Current Money Provided: 0.00 ");
         }
 
 
