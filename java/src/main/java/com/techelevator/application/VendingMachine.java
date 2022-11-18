@@ -26,6 +26,19 @@ public class VendingMachine {
                 String name = lineArr[1];
                 double price = Double.parseDouble(lineArr[2]);
                 String type = lineArr[3];
+                if (type.equals("Candy")) {
+                    Item candy = new Candy (itemLocation, name, price, type);
+                    items.add(candy);
+                } else if (type.equals("Drinks")) {
+                    Item drinks = new Drinks (itemLocation, name, price, type);
+                    items.add(drinks);
+                } else if (type.equals("Gum")) {
+                    Item gum = new Gum (itemLocation, name, price, type);
+                    items.add(gum);
+                }else if (type.equals("Munchy")) {
+                    Item munchy = new Munchy (itemLocation, name, price, type);
+                    items.add(munchy);
+                }
                 Item food = new Item(itemLocation, name, price, type);
                 items.add(food);
             }
@@ -70,7 +83,7 @@ public class VendingMachine {
 
                 for(Item item: items){
 
-                    if(item.getDeposit().equals(moneyInput));/// see what I'm trying to do?? Shes grumpy and wants food..:(cyah in a bit
+//                    if(item.getDeposit().equals(moneyInput));/// see what I'm trying to do?? Shes grumpy and wants food..:(cyah in a bit
                 }
 
                 UserInput.getCurrentMoneyProvided();
