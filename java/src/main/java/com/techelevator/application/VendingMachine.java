@@ -7,6 +7,7 @@ import com.techelevator.ui.UserOutput;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,6 +15,7 @@ import java.util.Scanner;
 public class VendingMachine {
 
     private static List<Item> items = new ArrayList<>();
+    private static final DecimalFormat df = new DecimalFormat("0.00");
 
     public void loadFile() {
         File file = new File("catering1.csv");
@@ -75,15 +77,24 @@ public class VendingMachine {
         while (stay) {
             UserOutput.displayLevel2Options();
             String choice = UserInput.getSecondMenuOption();
+            Scanner userInput = new Scanner(System.in);
 
+            double totalBalance = 0.00;
 
             if (choice.equals("Feed Money")) {
-                System.out.println("Insert money; $1, $5, $10, or $20");
-                String moneyInput = UserInput.getCurrentMoneyProvided();
+                System.out.println("Insert money; $1.00, $5.00, $10.00, or $20.00");
+                String moneyInput = userInput.nextLine();
+                double total = Double.parseDouble(moneyInput);
+                totalBalance += total;
+                
+                System.out.println("Current Money Provided: " + "$" + df.format(totalBalance));
+
+//                if()
+
 
                 for(Item item: items){
 
-//                    if(item.getDeposit().equals(moneyInput));/// see what I'm trying to do?? Shes grumpy and wants food..:(cyah in a bit
+//                    if(item.getDeposit().equals(moneyInput));/// see what I'm trying to do?
                 }
 
                 UserInput.getCurrentMoneyProvided();

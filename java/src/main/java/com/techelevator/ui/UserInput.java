@@ -65,6 +65,10 @@ public class UserInput {
         return Double.toString(currentBalance);
 
     }
+
+    public static String nextLine() {
+        return "";
+    }
 }
 
 
