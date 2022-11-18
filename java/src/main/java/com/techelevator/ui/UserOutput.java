@@ -43,7 +43,7 @@ public class UserOutput
         System.out.println("(S) Select Item");
         System.out.println("(F) Finish Transaction");
 
-        System.out.println("Current Money Provided: ");  //have a userInput object for the current money provided
+        System.out.println("Current Money Provided: ");
     }
 
 

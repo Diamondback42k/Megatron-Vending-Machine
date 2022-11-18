@@ -1,37 +1,46 @@
 package com.techelevator.application;
 
-public abstract class Item {
+public class Item implements Item1 {
 
+//    we'll call this either menu or inventory
+
+    private String location;
     private String name;
     private double price;
-    private String location;
-    private String type;      //Create our variables for our items
+    private String type;
 
-    public Item( String name, double price) {
+    //Create our variables for our items
 
+    public Item(String location, String name, double price, String type) {
+
+        this.location = location;
         this.name = name;
         this.price = price;
-
+        this.type = type;
     }
 
     public String getName() {
         return name;
+    }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public double getPrice() {
         return price;
     }
 
-    public void setName(String name) { //do we need these??
+//    public void setName(String name) { //do we need these??
+//        this.name = name;
+//    }
 
-        this.name = name;
+    public String toString() {
+
+        return location + "," + name + "," + price + "," + type;
     }
-
-    public void setPrice(double price) {
-        this.price = price;             //Private or public?
-    }
-
-
-
 }

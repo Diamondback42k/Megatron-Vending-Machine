@@ -1,6 +1,6 @@
 package com.techelevator.application;
 
-public class Money {
+public class Money extends VendingMachine {
 
     private final double Nickel = 0.05;
     private final double Dime = 0.1;

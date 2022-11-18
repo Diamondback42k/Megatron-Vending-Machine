@@ -2,8 +2,7 @@ package com.techelevator.application;
 
 public class Munchy extends Item {
 
-    public Item(){
-        super("", 0)
+    public Munchy(String location, String name, double price, String type) {
+        super(location, name, price, type);
     }
-
 }

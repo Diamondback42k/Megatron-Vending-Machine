@@ -8,17 +8,12 @@ import java.util.Scanner;
  * 
  * Dependencies: None
  */
-public class UserInput
-{
+public class UserInput {
     private static Scanner scanner = new Scanner(System.in);
 
     public static String getHomeScreenOption() {
         System.out.println("What would you like to do?");
         System.out.println();
-
-        System.out.println("D) Display Vending Machine Items");
-        System.out.println("P) Purchase");
-        System.out.println("E) Exit");
 
         System.out.println();
         System.out.print("Please select an option: ");
@@ -36,26 +31,29 @@ public class UserInput
             return "";
         }
     }
-        public static String getSecondMenuOption(){
-            String choice = scanner.nextLine();
 
-            if(choice.equals("M")){
-                return "Feed Money";
-            }else if(choice.equals("S")){
-                return "Select Item";
-            }else if(choice.equals("F")){
-                return "Finish Transaction";
-            }else{
-                return "";
-            }
+    public static String getSecondMenuOption() {
+        String choice = scanner.nextLine();
 
-
-
-
+        if (choice.equals("M")) {
+            return "Feed Money";
+        } else if (choice.equals("S")) {
+            return "Select Item";
+        } else if (choice.equals("F")) {
+            return "Finish Transaction";
+        } else {
+            return "";
+        }
     }
 
-
+    public static String getCurrentMoneyProvided() {
+        String currentMoney = scanner.nextLine();
+        System.out.println("Current Money Provided: ");
+        double currentBalance = 0.00;
+//        if (currentMoney = 0)
+        return Double.toString(currentBalance);
     }
+}
 
     
 
