@@ -25,7 +25,7 @@ public class UserInput {
             return "display";
         } else if (option.equals("P")) {
             return "purchase";
-        } else if (option.equals("E")) {
+        } else if (option.equals("S")) {
             return "exit";
         } else {
             return "";
@@ -33,8 +33,8 @@ public class UserInput {
     }
 
     public static String getSecondMenuOption() {
+        System.out.println("Enter choice:");
         String choice = scanner.nextLine();
-
         if (choice.equals("M")) {
             return "Feed Money";
         } else if (choice.equals("S")) {
@@ -46,15 +46,15 @@ public class UserInput {
         }
     }
 
-    public static String getCurrentMoneyProvided() {
-        String currentMoney = scanner.nextLine();
-        double currentBalance = 0.00;
+//    public static String getCurrentMoneyProvided() {
+//        String currentMoney = scanner.nextLine();
+//        double currentBalance = 0.00;
+//
+//            return Double.toString(currentBalance);
+//
+//        }
 
-            return Double.toString(currentBalance);
-
-        }
-
-    }
+}
 
 
     
