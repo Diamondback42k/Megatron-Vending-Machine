@@ -10,15 +10,17 @@ public class Item implements ItemInterface {
     private String name;
     private double price;
     private String type;
+    private double deposit;
 
     //Create our variables for our items
 
-    public Item (String location, String name, double price, String type) {
+    public Item (String location, String name, double price, String type, double deposit) {
 
         this.location = location;
         this.name = name;
         this.price = price;
         this.type = type;
+        this.deposit = deposit;
     }
 
     public String getName() {
@@ -35,6 +37,10 @@ public class Item implements ItemInterface {
 
     public double getPrice() {
         return price;
+    }
+
+    public double getDeposit(){
+        return deposit;
     }
 
     @Override

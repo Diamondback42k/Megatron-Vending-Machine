@@ -1,5 +1,6 @@
 package com.techelevator.application;
 
+//import com.sun.tools.javac.jvm.Items;
 import com.techelevator.models.Item;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
@@ -11,10 +12,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class VendingMachine {
+
     private static List<Item> items = new ArrayList<>();
 
     public void loadFile() {
-        File file = new File("catering.csv");
+        File file = new File("catering1.csv");
         try {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNext()) {
@@ -41,7 +43,7 @@ public class VendingMachine {
             String choice = UserInput.getHomeScreenOption();
 
             if (choice.equals("display")) {
-                System.out.println("display team data");
+                System.out.println("display vending items");
                 for (Item item : items) {
                     System.out.println(item);
                 }
@@ -55,29 +57,35 @@ public class VendingMachine {
         }
     }
 
-    public static void secondMenuOption(){
+    public static void secondMenuOption() {
         boolean stay = true;
-        while(stay){
+        while (stay) {
             UserOutput.displayLevel2Options();
             String choice = UserInput.getSecondMenuOption();
 
-            if(choice.equals("Feed Money")){
+
+            if (choice.equals("Feed Money")) {
                 System.out.println("Insert money; $1, $5, $10, or $20");
+                String moneyInput = UserInput.getCurrentMoneyProvided();
+
+                for(Item item: items){
+
+                    if(item.getDeposit().equals(moneyInput));/// see what I'm trying to do?? Shes grumpy and wants food..:(cyah in a bit
+                }
+
+                UserInput.getCurrentMoneyProvided();
+                System.out.println();
 
             } else if (choice.equals("Select Item")) {
 
             } else if (choice.equals("Finish Transaction")) {
-                    stay = false;
-            } UserInput.getCurrentMoneyProvided();
+                stay = false;
+//            } UserInput.getCurrentMoneyProvided();
+            }
         }
-    }
 
 
-
-//        public void loadFile2(){
-//        File catering1 = new File("catering1.csv");
-//
-//        }  /just in case ?
 
     }
+}
 
