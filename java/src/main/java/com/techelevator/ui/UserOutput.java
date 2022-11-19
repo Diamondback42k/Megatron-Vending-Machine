@@ -37,12 +37,12 @@ public class UserOutput {
     }
 
         public static void displayLevel2Options () {
-//        double moneyProvided =
+
 
             System.out.println("(M) Feed Money");
             System.out.println("(S) Select Item");
             System.out.println("(F) Finish Transaction");
-            System.out.println("Current Money Provided: ");
+            System.out.println("Current Money Provided: " );
         }
 
 

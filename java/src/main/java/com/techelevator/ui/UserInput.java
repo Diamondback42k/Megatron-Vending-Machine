@@ -48,28 +48,32 @@ public class UserInput {
 
     public static String getCurrentMoneyProvided() {
         String depositedMoney = scanner.nextLine();
-
+        boolean stay = true;
         double currentBalance = 0.00;
 
-        if (depositedMoney.equals("1.00")) {
-            currentBalance += 1.00;
-        } else if (depositedMoney.equals("5.00")) {
-            currentBalance += 5.00;
-        } else if (depositedMoney.equals("10.00")) {
-            currentBalance += 10.00;
-        } else if (depositedMoney.equals("20.00")) {
-            currentBalance += 20.00;
-        } else {
-            return Double.toString(currentBalance);
+        while (stay) {
+            if (depositedMoney.equals("1.00")) {
+                currentBalance += 1.00;
+            } else if (depositedMoney.equals("5.00")) {
+                currentBalance += 5.00;
+            } else if (depositedMoney.equals("10.00")) {
+                currentBalance += 10.00;
+            } else if (depositedMoney.equals("20.00")) {
+                currentBalance += 20.00;
+            } else {
+                return Double.toString(currentBalance);
+            }
+            stay = false;
+
         }
         return Double.toString(currentBalance);
-
     }
 
-    public static String nextLine() {
-        return "";
+        public static String nextLine () {
+            return "";
+        }
     }
-}
+
 
 
     

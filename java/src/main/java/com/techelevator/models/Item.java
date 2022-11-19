@@ -2,6 +2,7 @@ package com.techelevator.models;
 
 import com.techelevator.application.ItemInterface;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Item implements ItemInterface {
@@ -10,6 +11,7 @@ public class Item implements ItemInterface {
     private String name;
     private double price;
     private String type;
+    private double balance;
 //    took out the deposit, will explain later
 //    might have to add quantity, considering 
     //Create our variables for our items
@@ -40,7 +42,25 @@ public class Item implements ItemInterface {
 
     @Override
     public Map<String, Integer> getInventory() {
-        return null;
+        Map<String, Integer> slotsValue = new HashMap<>();
+        slotsValue.put("A1", 6);
+
+
+
+
+
+
+
+
+
+
+        return slotsValue;
+    }
+
+
+    @Override
+    public double getBalance() {
+        return balance;
     }
 
     //    private String name;

@@ -10,12 +10,14 @@ import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class VendingMachine {
 
     private static List<Item> items = new ArrayList<>();
     private static final DecimalFormat df = new DecimalFormat("0.00");
+//    private static final Map<String, Integer> inventory;
 
     public void loadFile() {
         File file = new File("catering1.csv");
@@ -31,7 +33,7 @@ public class VendingMachine {
                 if (type.equals("Candy")) {
                     Item candy = new Candy (itemLocation, name, price, type);
                     items.add(candy);
-                } else if (type.equals("Drinks")) {
+                } else if (type.equals("Drink")) {
                     Item drinks = new Drinks (itemLocation, name, price, type);
                     items.add(drinks);
                 } else if (type.equals("Gum")) {
@@ -41,8 +43,8 @@ public class VendingMachine {
                     Item munchy = new Munchy (itemLocation, name, price, type);
                     items.add(munchy);
                 }
-                Item food = new Item(itemLocation, name, price, type);
-                items.add(food);
+//                Item food = new Item(itemLocation, name, price, type);
+//                items.add(food);
             }
 
         } catch (FileNotFoundException e) {
@@ -82,34 +84,40 @@ public class VendingMachine {
             double totalBalance = 0.00;
 
             if (choice.equals("Feed Money")) {
+
                 System.out.println("Insert money; $1.00, $5.00, $10.00, or $20.00");
                 String moneyInput = userInput.nextLine();
                 double total = Double.parseDouble(moneyInput);
-                totalBalance += total;
-                
-                System.out.println("Current Money Provided: " + "$" + df.format(totalBalance));
 
-//                if()
+                    totalBalance += total;
+                    System.out.println("Current Money Provided: " + "$" + df.format(totalBalance));
 
-
-                for(Item item: items){
-
-//                    if(item.getDeposit().equals(moneyInput));/// see what I'm trying to do?
-                }
-
-                UserInput.getCurrentMoneyProvided();
-                System.out.println();
 
             } else if (choice.equals("Select Item")) {
+                System.out.println("display vending items");
+                for (Item item : items) {
+                    System.out.println(item);
+                }
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Please make your selection by entering the slot number: ");
+                String slot = scanner.nextLine();
+                
+//                if(slot.equals("A1")){
+//                    System.out.println(scanner.nextLine());
+
+//                }
 
             } else if (choice.equals("Finish Transaction")) {
                 stay = false;
-//            } UserInput.getCurrentMoneyProvided();
+
             }
         }
 
 
 
     }
-}
+
+
+    }
+
 

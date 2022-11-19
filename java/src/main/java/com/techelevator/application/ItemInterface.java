@@ -7,4 +7,5 @@ public interface ItemInterface {
     String getType();
     double getPrice();
     Map<String,Integer> getInventory();
+    double getBalance();
 }
