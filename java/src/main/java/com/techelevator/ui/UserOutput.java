@@ -98,6 +98,25 @@ public class UserOutput extends VendingMachine {
 
                         String line = scanner.nextLine();
                         lineArr = line.split("\\,");
+                        String itemLocation = lineArr[0];  //Map method identify and give value to each slot, Map<String, Integer>
+                        String name = lineArr[1];
+                        double price = Double.parseDouble(lineArr[2]);
+                        String type = lineArr[3];
+                        if (type.equals("Candy")) {
+                            Item candy = new Candy (itemLocation, name, price, type, quantity) ;
+                            items.add(candy);
+                        } else if (type.equals("Drink")) {
+                            Item drinks = new Drinks (itemLocation, name, price, type, quantity);
+                            items.add(drinks);
+                        } else if (type.equals("Gum")) {
+                            Item gum = new Gum (itemLocation, name, price, type, quantity);
+                            items.add(gum);
+                        }else if (type.equals("Munchy")) {
+                            Item munchy = new Munchy (itemLocation, name, price, type, quantity);
+                            items.add(munchy);
+                        }
+
+
                         System.out.println(Arrays.toString(lineArr) + " QTY: " + quantity);
 
                     }
@@ -108,9 +127,10 @@ public class UserOutput extends VendingMachine {
                 Scanner slotInput = new Scanner(System.in);
                 System.out.println("Please make your selection by entering the slot number: ");
                 String slot = slotInput.nextLine();
+              
 
                try {
-                   for (String word : lineArr) {
+                   for (Item word : items) {
 
                        if (word.equals(lineArr[0]) && word.equals(slot)) {
 
