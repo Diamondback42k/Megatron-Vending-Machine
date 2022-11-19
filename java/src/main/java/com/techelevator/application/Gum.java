@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Gum extends Item {
 
-    public Gum(String location, String name, double price, String type, Map<String, Integer> quantity) {
+    public Gum(String location, String name, double price, String type, int quantity) {
         super(location, name, price, type, quantity);
     }
 }

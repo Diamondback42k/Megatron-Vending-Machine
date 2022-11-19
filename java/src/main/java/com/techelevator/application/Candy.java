@@ -5,7 +5,7 @@ import com.techelevator.models.Item;
 import java.util.Map;
 
 public class Candy extends Item {
-    public Candy(String location, String name, double price, String type, Map<String, Integer> quantity) {
+    public Candy(String location, String name, double price, String type, int quantity) {
         super(location, name, price, type, quantity);
     }
     int quantity = 6; //QUESTIONABLE TOO

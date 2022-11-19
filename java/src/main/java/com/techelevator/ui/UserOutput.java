@@ -2,6 +2,7 @@ package com.techelevator.ui;
 
 import com.techelevator.application.*;
 import com.techelevator.models.Item;
+//import jdk.swing.interop.SwingInterOpUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,6 +32,7 @@ public class UserOutput extends VendingMachine {
     File inventoryFile = new File("catering1.csv");
     Scanner scanner = new Scanner(inventoryFile);
     static double totalBalance = 0.00;
+
 
     public UserOutput(List<Item> items) throws FileNotFoundException {
         this.items = items;
@@ -68,40 +70,75 @@ public class UserOutput extends VendingMachine {
 
         boolean stay = true;
 
-        while (stay) {
+        while(stay) {
+
             displayLevel2Options();
             String choice = UserInput.getSecondMenuOption();
             Scanner userInput = new Scanner(System.in);
 
-
             if (choice.equals("Feed Money")) {
-                boolean feed = true;
-                while (feed) {
+
                     System.out.println("Insert money; $1.00, $5.00, $10.00, or $20.00");
                     String moneyInput = userInput.nextLine();
                     double total = Double.parseDouble(moneyInput);
                     totalBalance += total;
-                    feed = false;
-                }
+
             } else if (choice.equals("Select Item")) {
+
                 System.out.println("Display vending items");
+
                 File file = new File("catering1.csv");
+                String[] lineArr = new String[0];
                 try {
                     Scanner scanner = new Scanner(file);
                     while (scanner.hasNext()) {
+                        int quantity = 6;
                         String line = scanner.nextLine();
-                        String[] lineArr = line.split("\\,");
+                        lineArr = line.split("\\,");
+                        System.out.println(Arrays.toString(lineArr) + " QTY: " + quantity);
+
+                    }
+
+                } catch (FileNotFoundException e) {
+                    System.out.println("Problem with file");
+                }
+                Scanner slotInput = new Scanner(System.in);
+                System.out.println("Please make your selection by entering the slot number: ");
+                String slot = slotInput.nextLine();
+                for (String word : lineArr) {
+
+                    if (word.equals(lineArr[0])) {
+
+                        int quantity = 6;
+
+                        Scanner input = new Scanner(System.in);
+                        System.out.println("QTY: ");
+
+                        String qty = input.nextLine();
+                        int newQty = Integer.parseInt(qty);
+                        double price = Integer.parseInt(lineArr[2]);
+                        double calculatedPrice = price * newQty;
+
+                        if (newQty <= quantity && totalBalance >= calculatedPrice) {
+                            quantity -= newQty;
+
+
+                        }
+
+
+                        System.out.println(input.nextLine());
                         System.out.println();
-                        Scanner scanner = new Scanner(System.in);
-                        System.out.println("Please make your selection by entering the slot number: ");
-                        String slot = scanner.nextLine();
-                    } else if (choice.equals("Finish Transaction")) {
-                        stay = false;
+
+
                     }
                 }
 
+            }else if (choice.equals("Finish Transaction")) {
+                stay = false;
+            }
+            }
             }
         }
-    }
-}
+
+
 

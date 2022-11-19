@@ -48,11 +48,11 @@ public class UserInput {
     }
 
     public static String getSubLevel2Option(){
-        System.out.println();
-       String choice = scanner.nextLine();
-       if(choice.equals("Exit")){
-           return "Exit";
-       }
+//        System.out.println();
+//       String choice = scanner.nextLine();
+//       if(choice.equals("Exit")){
+//           return "Exit";
+//       }
            return "";
 
     }

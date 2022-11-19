@@ -28,7 +28,7 @@ public class VendingMachine {
                 String name = lineArr[1];
                 double price = Double.parseDouble(lineArr[2]);
                 String type = lineArr[3];
-                Map<String, Integer> quantity = new HashMap<>();
+                int quantity = 6;
                 if (type.equals("Candy")) {
                     Item candy = new Candy (itemLocation, name, price, type, quantity) ;
                     items.add(candy);

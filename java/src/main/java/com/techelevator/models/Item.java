@@ -11,11 +11,11 @@ public class Item implements ItemInterface {
     private String name;
     private double price;
     private String type;
-    private Map<String, Integer> quantity;
+    private int quantity;
 
     private double balance;
 
-    public Item (String location, String name, double price, String type, Map<String, Integer> quantity) {
+    public Item (String location, String name, double price, String type, int quantity) {
 
         this.location = location;
         this.name = name;
@@ -40,27 +40,32 @@ public class Item implements ItemInterface {
         return price;
     }
 
-    public Map<String, Integer> getQuantity() {
-        Map<String, Integer> quantity = new HashMap<>();
-        quantity.put("A1",6);
-        quantity.put("A2",6);
-        quantity.put("A3",6);
-        quantity.put("A4",6);
-        quantity.put("B1",6);
-        quantity.put("B2",6);
-        quantity.put("B3",6);
-        quantity.put("B4",6);
-        quantity.put("C1",6);
-        quantity.put("C2",6);
-        quantity.put("C3",6);
-        quantity.put("C4",6);
-        quantity.put("D1",6);
-        quantity.put("D2",6);
-        quantity.put("D3",6);
-        quantity.put("D4",6);
-
-        return quantity;
+    @Override
+    public int getQuantity() {
+        return 0;
     }
+
+//    public Map<String, Integer> getQuantity() {
+//        Map<String, Integer> quantity = new HashMap<>();
+//        quantity.put("A1",6);
+//        quantity.put("A2",6);
+//        quantity.put("A3",6);
+//        quantity.put("A4",6);
+//        quantity.put("B1",6);
+//        quantity.put("B2",6);
+//        quantity.put("B3",6);
+//        quantity.put("B4",6);
+//        quantity.put("C1",6);
+//        quantity.put("C2",6);
+//        quantity.put("C3",6);
+//        quantity.put("C4",6);
+//        quantity.put("D1",6);
+//        quantity.put("D2",6);
+//        quantity.put("D3",6);
+//        quantity.put("D4",6);
+//
+//        return quantity;
+//    }
 
     public double getBalance() {
         return balance;
