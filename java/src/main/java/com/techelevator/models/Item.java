@@ -11,20 +11,21 @@ public class Item implements ItemInterface {
     private String name;
     private double price;
     private String type;
-<<<<<<< HEAD
+    private Map<String, Integer> quantity;
+
     private double balance;
 //    took out the deposit, will explain later
 //    might have to add quantity, considering 
     //Create our variables for our items
-=======
->>>>>>> 4224dda5d6f95d46936b91281c3ee5d708168f22
 
-    public Item (String location, String name, double price, String type) {
+
+    public Item (String location, String name, double price, String type, Map<String, Integer> quantity) {
 
         this.location = location;
         this.name = name;
         this.price = price;
         this.type = type;
+        this.quantity = quantity;
     }
 
     public String getName() {
@@ -44,69 +45,40 @@ public class Item implements ItemInterface {
     }
 
     @Override
-    public Map<String, Integer> getInventory() {
-        Map<String, Integer> slotsValue = new HashMap<>();
-        slotsValue.put("A1", 6);
+    public Map<String, Integer> getQuantity() {
+        Map<String, Integer> quantity = new HashMap<>();
+        quantity.put("A1",6);
+        quantity.put("A2",6);
+        quantity.put("A3",6);
+        quantity.put("A4",6);
+        quantity.put("B1",6);
+        quantity.put("B2",6);
+        quantity.put("B3",6);
+        quantity.put("B4",6);
+        quantity.put("C1",6);
+        quantity.put("C2",6);
+        quantity.put("C3",6);
+        quantity.put("C4",6);
+        quantity.put("D1",6);
+        quantity.put("D2",6);
+        quantity.put("D3",6);
+        quantity.put("D4",6);
 
-
-
-
-
-
-
-
-
-
-        return slotsValue;
+        return quantity;
     }
-
 
     @Override
     public double getBalance() {
         return balance;
     }
 
-    //    private String name;
-//    private int wins;
-//    private int losses;
-//
-//    public Team(String name, int wins, int losses) {
-//        this.name = name;
-//        this.wins = wins;
-//        this.losses = losses;
-//    }
-//
-//    public int getWins() {
-//        return wins;
-//    }
-//
-//    public int getLosses() {
-//        return losses;
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public String toString() {
-//        double wlRatio;
-//        if(losses == 0) {
-//            wlRatio = wins;
-//        } else {
-//            wlRatio = (double)wins / (double)losses;
-//        }
+
     public String toString() {
 
         return location + "," + name + "," + price + "," + type;
 
-//        return "Name: " + name + " Wins: " + wins + " Loss: " + losses + " Win Loss Ratio: " + wlRatio;
+
     }
 
-//    public void setWins(int wins) {
-//        this.wins = wins;
-//    }
-//
-//    public void setLosses(int losses) {
-//        this.losses = losses;
-//    }
+
 }

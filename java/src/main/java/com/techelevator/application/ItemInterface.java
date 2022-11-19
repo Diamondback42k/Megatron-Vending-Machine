@@ -6,6 +6,6 @@ public interface ItemInterface {
     String getName();
     String getType();
     double getPrice();
-    Map<String,Integer> getInventory();
+    Map<String,Integer> getQuantity();
     double getBalance();
 }

@@ -47,32 +47,14 @@ public class UserInput {
         }
     }
 
-    public static String getCurrentMoneyProvided() {
+    public static String getSubLevel2Option(){
         System.out.println();
-        System.out.println("Money:"); //TO BE DISCUSSED, NAME
-        String depositedMoney = scanner.nextLine();
-<<<<<<< HEAD
-        boolean stay = true;
-=======
->>>>>>> 4224dda5d6f95d46936b91281c3ee5d708168f22
-        double currentBalance = 0.00;
+       String choice = scanner.nextLine();
+       if(choice.equals("Exit")){
+           return "Exit";
+       }
+           return "";
 
-        while (stay) {
-            if (depositedMoney.equals("1.00")) {
-                currentBalance += 1.00;
-            } else if (depositedMoney.equals("5.00")) {
-                currentBalance += 5.00;
-            } else if (depositedMoney.equals("10.00")) {
-                currentBalance += 10.00;
-            } else if (depositedMoney.equals("20.00")) {
-                currentBalance += 20.00;
-            } else {
-                return Double.toString(currentBalance);
-            }
-            stay = false;
-
-        }
-        return Double.toString(currentBalance);
     }
 
         public static String nextLine () {

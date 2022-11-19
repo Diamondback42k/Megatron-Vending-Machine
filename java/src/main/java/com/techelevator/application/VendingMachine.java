@@ -8,18 +8,20 @@ import com.techelevator.ui.UserOutput;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
+
+import static com.techelevator.ui.UserOutput.displayLevel2Options;
+import static com.techelevator.ui.UserOutput.subLevel2Options;
 
 public class VendingMachine {
 
     private static List<Item> items = new ArrayList<>();
-    private static final DecimalFormat df = new DecimalFormat("0.00");
-//    private static final Map<String, Integer> inventory;
 
-    public void loadFile() {
+    private static final DecimalFormat df = new DecimalFormat("0.00");
+
+
+
+    public static void loadFile() {
         File file = new File("catering1.csv");
         try {
             Scanner scanner = new Scanner(file);
@@ -30,18 +32,14 @@ public class VendingMachine {
                 String name = lineArr[1];
                 double price = Double.parseDouble(lineArr[2]);
                 String type = lineArr[3];
-                int quantity = 6; // questionable, we'll discuss later
+                Map<String, Integer> quantity = new HashMap<>();
                 if (type.equals("Candy")) {
-                    Item candy = new Candy (itemLocation, name, price, type, quantity);
+                    Item candy = new Candy (itemLocation, name, price, type, quantity) ;
                     items.add(candy);
-<<<<<<< HEAD
                 } else if (type.equals("Drink")) {
-                    Item drinks = new Drinks (itemLocation, name, price, type);
-=======
-                } else if (type.equals("Drinks")) {
                     Item drinks = new Drinks (itemLocation, name, price, type, quantity);
->>>>>>> 4224dda5d6f95d46936b91281c3ee5d708168f22
                     items.add(drinks);
+
                 } else if (type.equals("Gum")) {
                     Item gum = new Gum (itemLocation, name, price, type, quantity);
                     items.add(gum);
@@ -72,7 +70,7 @@ public class VendingMachine {
                 }
 
             } else if (choice.equals("purchase")) {
-                secondMenuOption();
+               secondMenuOption();
 
             } else if (choice.equals("exit")) {
                 break;
@@ -81,50 +79,50 @@ public class VendingMachine {
     }
 
     public static void secondMenuOption() {
-        boolean stay = true;
-        while (stay) {
-            UserOutput.displayLevel2Options();
-            String choice = UserInput.getSecondMenuOption();
-            Scanner userInput = new Scanner(System.in);
+        subLevel2Options();
+//        boolean stay = true;
+//        while (stay) {
+//            displayLevel2Options();
+//            String choice = UserInput.getSecondMenuOption();
+//            Scanner userInput = new Scanner(System.in);
+//
+//            double totalBalance = 0.00;
+//
+//            if (choice.equals("Feed Money")) {
+//
+//
+//                System.out.println("Insert money; $1.00, $5.00, $10.00, or $20.00");
+//
+//
+//                String moneyInput = userInput.nextLine();
+//                double total = Double.parseDouble(moneyInput);
+//
+//                    totalBalance += total;
+//                    System.out.println("Current Money Provided: " + "$" + df.format(totalBalance));
 
-            double totalBalance = 0.00;
-
-            if (choice.equals("Feed Money")) {
-<<<<<<< HEAD
-
-                System.out.println("Insert money; $1.00, $5.00, $10.00, or $20.00");
-=======
-                System.out.println("Insert amount; $1.00, $5.00, $10.00, or $20.00");
->>>>>>> 4224dda5d6f95d46936b91281c3ee5d708168f22
-                String moneyInput = userInput.nextLine();
-                double total = Double.parseDouble(moneyInput);
-
-                    totalBalance += total;
-                    System.out.println("Current Money Provided: " + "$" + df.format(totalBalance));
-
-
-            } else if (choice.equals("Select Item")) {
-                System.out.println("display vending items");
-                for (Item item : items) {
-                    System.out.println(item);
-                }
-                Scanner scanner = new Scanner(System.in);
-                System.out.println("Please make your selection by entering the slot number: ");
-                String slot = scanner.nextLine();
-                
+//
+//            } else if (choice.equals("Select Item")) {
+//                System.out.println("display vending items");
+//                for (Item item : items) {
+//                    System.out.println(item);
+//                }
+//                Scanner scanner = new Scanner(System.in);
+//                System.out.println("Please make your selection by entering the slot number: ");
+//                String slot = scanner.nextLine();
+//
 //                if(slot.equals("A1")){
 //                    System.out.println(scanner.nextLine());
 
 //                }
 
-            } else if (choice.equals("Finish Transaction")) {
-                stay = false;
+//            } else if (choice.equals("Finish Transaction")) {
+//                stay = false;
 
             }
         }
-    }
 
 
-    }
+
+
 
 
