@@ -9,9 +9,6 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.*;
 
-
-
-
 /**
  * Responsibilities: This class should handle formatting and displaying ALL
  * messages to the user
@@ -20,7 +17,7 @@ import java.util.*;
  */
 public class UserOutput extends VendingMachine {
 
-    public static void main(String [] args){
+    public static void main(String[] args) {
 
 
         VendingMachine vendingMachine = new VendingMachine();
@@ -29,12 +26,13 @@ public class UserOutput extends VendingMachine {
     }
 
 
-
     private static final DecimalFormat df = new DecimalFormat("0.00");
     private static List<Item> items = new ArrayList<>();
+    File inventoryFile = new File("catering1.csv");
+    Scanner scanner = new Scanner(inventoryFile);
     static double totalBalance = 0.00;
 
-    public UserOutput(List<Item> items) {
+    public UserOutput(List<Item> items) throws FileNotFoundException {
         this.items = items;
     }
 
@@ -77,38 +75,33 @@ public class UserOutput extends VendingMachine {
 
 
             if (choice.equals("Feed Money")) {
-
                 boolean feed = true;
-
                 while (feed) {
-
                     System.out.println("Insert money; $1.00, $5.00, $10.00, or $20.00");
-
                     String moneyInput = userInput.nextLine();
-
                     double total = Double.parseDouble(moneyInput);
-
                     totalBalance += total;
-
                     feed = false;
                 }
-
             } else if (choice.equals("Select Item")) {
                 System.out.println("Display vending items");
-                System.out.println();
-                loadFile();
-                Scanner scanner = new Scanner(System.in);
-                System.out.println("Please make your selection by entering the slot number: ");
-                String slot = scanner.nextLine();
-
-
-
-            } else if (choice.equals("Finish Transaction")) {
-                stay = false;
+                File file = new File("catering1.csv");
+                try {
+                    Scanner scanner = new Scanner(file);
+                    while (scanner.hasNext()) {
+                        String line = scanner.nextLine();
+                        String[] lineArr = line.split("\\,");
+                        System.out.println();
+                        Scanner scanner = new Scanner(System.in);
+                        System.out.println("Please make your selection by entering the slot number: ");
+                        String slot = scanner.nextLine();
+                    } else if (choice.equals("Finish Transaction")) {
+                        stay = false;
+                    }
+                }
 
             }
         }
-
     }
-
 }
+

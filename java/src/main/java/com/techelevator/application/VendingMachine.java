@@ -17,10 +17,6 @@ public class VendingMachine {
 
     private static List<Item> items = new ArrayList<>();
 
-    private static final DecimalFormat df = new DecimalFormat("0.00");
-
-
-
     public static void loadFile() {
         File file = new File("catering1.csv");
         try {
@@ -39,7 +35,6 @@ public class VendingMachine {
                 } else if (type.equals("Drink")) {
                     Item drinks = new Drinks (itemLocation, name, price, type, quantity);
                     items.add(drinks);
-
                 } else if (type.equals("Gum")) {
                     Item gum = new Gum (itemLocation, name, price, type, quantity);
                     items.add(gum);
@@ -80,44 +75,8 @@ public class VendingMachine {
 
     public static void secondMenuOption() {
         subLevel2Options();
-//        boolean stay = true;
-//        while (stay) {
-//            displayLevel2Options();
-//            String choice = UserInput.getSecondMenuOption();
-//            Scanner userInput = new Scanner(System.in);
-//
-//            double totalBalance = 0.00;
-//
-//            if (choice.equals("Feed Money")) {
-//
-//
-//                System.out.println("Insert money; $1.00, $5.00, $10.00, or $20.00");
-//
-//
-//                String moneyInput = userInput.nextLine();
-//                double total = Double.parseDouble(moneyInput);
-//
-//                    totalBalance += total;
-//                    System.out.println("Current Money Provided: " + "$" + df.format(totalBalance));
 
 //
-//            } else if (choice.equals("Select Item")) {
-//                System.out.println("display vending items");
-//                for (Item item : items) {
-//                    System.out.println(item);
-//                }
-//                Scanner scanner = new Scanner(System.in);
-//                System.out.println("Please make your selection by entering the slot number: ");
-//                String slot = scanner.nextLine();
-//
-//                if(slot.equals("A1")){
-//                    System.out.println(scanner.nextLine());
-
-//                }
-
-//            } else if (choice.equals("Finish Transaction")) {
-//                stay = false;
-
             }
         }
 

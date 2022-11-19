@@ -14,10 +14,6 @@ public class Item implements ItemInterface {
     private Map<String, Integer> quantity;
 
     private double balance;
-//    took out the deposit, will explain later
-//    might have to add quantity, considering 
-    //Create our variables for our items
-
 
     public Item (String location, String name, double price, String type, Map<String, Integer> quantity) {
 
@@ -44,7 +40,6 @@ public class Item implements ItemInterface {
         return price;
     }
 
-    @Override
     public Map<String, Integer> getQuantity() {
         Map<String, Integer> quantity = new HashMap<>();
         quantity.put("A1",6);
@@ -67,7 +62,6 @@ public class Item implements ItemInterface {
         return quantity;
     }
 
-    @Override
     public double getBalance() {
         return balance;
     }
