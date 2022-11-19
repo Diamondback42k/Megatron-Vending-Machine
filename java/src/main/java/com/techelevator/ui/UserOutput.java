@@ -75,6 +75,7 @@ public class UserOutput extends VendingMachine {
             displayLevel2Options();
             String choice = UserInput.getSecondMenuOption();
             Scanner userInput = new Scanner(System.in);
+            int quantity = 6;
 
             if (choice.equals("Feed Money")) {
 
@@ -87,12 +88,14 @@ public class UserOutput extends VendingMachine {
 
                 System.out.println("Display vending items");
 
+//                List<Item> items = new ArrayList<>();
+
                 File file = new File("catering1.csv");
                 String[] lineArr = new String[0];
                 try {
                     Scanner scanner = new Scanner(file);
                     while (scanner.hasNext()) {
-                        int quantity = 6;
+
                         String line = scanner.nextLine();
                         lineArr = line.split("\\,");
                         System.out.println(Arrays.toString(lineArr) + " QTY: " + quantity);
@@ -105,33 +108,37 @@ public class UserOutput extends VendingMachine {
                 Scanner slotInput = new Scanner(System.in);
                 System.out.println("Please make your selection by entering the slot number: ");
                 String slot = slotInput.nextLine();
-                for (String word : lineArr) {
 
-                    if (word.equals(lineArr[0])) {
+               try {
+                   for (String word : lineArr) {
 
-                        int quantity = 6;
+                       if (word.equals(lineArr[0]) && word.equals(slot)) {
 
-                        Scanner input = new Scanner(System.in);
-                        System.out.println("QTY: ");
+                           Scanner input = new Scanner(System.in);
+                           System.out.println("QTY: ");
+                           String qty = input.nextLine();
+                           int newQty = Integer.parseInt(qty);
 
-                        String qty = input.nextLine();
-                        int newQty = Integer.parseInt(qty);
-                        double price = Integer.parseInt(lineArr[2]);
-                        double calculatedPrice = price * newQty;
+                           double price = Double.parseDouble(lineArr[2]);
+                           double calculatedPrice = price * newQty;
 
-                        if (newQty <= quantity && totalBalance >= calculatedPrice) {
-                            quantity -= newQty;
+                           if (newQty <= quantity && totalBalance >= calculatedPrice) {
+                               quantity -= newQty;
+                               totalBalance -= price;
+                               System.out.println("Dispensing Items");
 
+                           } else if(totalBalance < calculatedPrice){
+                               System.out.println("Not enough funds");
+                           }
 
-                        }
+                       }else if (!word.equals(lineArr[0]) && !word.equals(slot)) {
+                           System.out.println(slotInput.nextLine());
 
-
-                        System.out.println(input.nextLine());
-                        System.out.println();
-
-
-                    }
-                }
+                       }
+                   }
+               }catch(NumberFormatException e) {
+                   System.out.println("Invalid Number");
+               }
 
             }else if (choice.equals("Finish Transaction")) {
                 stay = false;
