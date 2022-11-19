@@ -11,10 +11,13 @@ public class Item implements ItemInterface {
     private String name;
     private double price;
     private String type;
+<<<<<<< HEAD
     private double balance;
 //    took out the deposit, will explain later
 //    might have to add quantity, considering 
     //Create our variables for our items
+=======
+>>>>>>> 4224dda5d6f95d46936b91281c3ee5d708168f22
 
     public Item (String location, String name, double price, String type) {
 

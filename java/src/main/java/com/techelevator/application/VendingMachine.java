@@ -30,17 +30,23 @@ public class VendingMachine {
                 String name = lineArr[1];
                 double price = Double.parseDouble(lineArr[2]);
                 String type = lineArr[3];
+                int quantity = 6; // questionable, we'll discuss later
                 if (type.equals("Candy")) {
-                    Item candy = new Candy (itemLocation, name, price, type);
+                    Item candy = new Candy (itemLocation, name, price, type, quantity);
                     items.add(candy);
+<<<<<<< HEAD
                 } else if (type.equals("Drink")) {
                     Item drinks = new Drinks (itemLocation, name, price, type);
+=======
+                } else if (type.equals("Drinks")) {
+                    Item drinks = new Drinks (itemLocation, name, price, type, quantity);
+>>>>>>> 4224dda5d6f95d46936b91281c3ee5d708168f22
                     items.add(drinks);
                 } else if (type.equals("Gum")) {
-                    Item gum = new Gum (itemLocation, name, price, type);
+                    Item gum = new Gum (itemLocation, name, price, type, quantity);
                     items.add(gum);
                 }else if (type.equals("Munchy")) {
-                    Item munchy = new Munchy (itemLocation, name, price, type);
+                    Item munchy = new Munchy (itemLocation, name, price, type, quantity);
                     items.add(munchy);
                 }
 //                Item food = new Item(itemLocation, name, price, type);
@@ -84,8 +90,12 @@ public class VendingMachine {
             double totalBalance = 0.00;
 
             if (choice.equals("Feed Money")) {
+<<<<<<< HEAD
 
                 System.out.println("Insert money; $1.00, $5.00, $10.00, or $20.00");
+=======
+                System.out.println("Insert amount; $1.00, $5.00, $10.00, or $20.00");
+>>>>>>> 4224dda5d6f95d46936b91281c3ee5d708168f22
                 String moneyInput = userInput.nextLine();
                 double total = Double.parseDouble(moneyInput);
 
@@ -112,9 +122,6 @@ public class VendingMachine {
 
             }
         }
-
-
-
     }
 
 

@@ -3,9 +3,10 @@ package com.techelevator.application;
 import com.techelevator.models.Item;
 
 public class Candy extends Item {
-    public Candy(String location, String name, double price, String type) {
+    public Candy(String location, String name, double price, String type, int quantity) {
         super(location, name, price, type);
     }
+    int quantity = 6; //QUESTIONABLE TOO
 
 
 //    public Candy() {
