@@ -1,11 +1,12 @@
 package com.techelevator.models;
 
 import com.techelevator.application.ItemInterface;
+import com.techelevator.application.VendingMachine;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Item implements ItemInterface {
+public class Item extends VendingMachine implements ItemInterface {
 
     private String location;
     private String name;
@@ -40,7 +41,6 @@ public class Item implements ItemInterface {
         return price;
     }
 
-    @Override
     public int getQuantity() {
         return 0;
     }

@@ -1,6 +1,5 @@
 package com.techelevator.ui;
 
-import java.math.BigDecimal;
 import java.util.Scanner;
 
 /**
@@ -14,7 +13,6 @@ public class UserInput {
     public static String getHomeScreenOption() {
         System.out.println("What would you like to do?");
         System.out.println();
-
         System.out.println();
         System.out.print("Please select an option: ");
 
@@ -47,20 +45,27 @@ public class UserInput {
         }
     }
 
-    public static String getSubLevel2Option(){
-//        System.out.println();
-//       String choice = scanner.nextLine();
-//       if(choice.equals("Exit")){
-//           return "Exit";
-//       }
+    public static String getFeedMoney(){
+        Scanner scanner = new Scanner(System.in);
+        String moneyFed = scanner.nextLine();
+        return moneyFed;
+    }
+
+    public static String getSelectItem(){
+        Scanner scanner = new Scanner(System.in);
+        String itemSelected = scanner.nextLine();
+        return itemSelected;
+    }
+
+    public static String getFinishTransaction(){
+        System.out.println();
+       String choice = scanner.nextLine();
+       if(choice.equals("Exit")){
+           return "Exit";
+       }
            return "";
-
     }
-
-        public static String nextLine () {
-            return "";
-        }
-    }
+}
 
 
 
