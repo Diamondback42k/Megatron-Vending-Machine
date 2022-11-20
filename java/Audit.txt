@@ -1,2 +1,2 @@
-Nov 20, 2022 4:03:22 AM com.techelevator.application.VendingMachine startLogger
-INFO: Money fed: 297.3
+Nov 20, 2022 9:57:07 AM com.techelevator.application.VendingMachine startLogger
+INFO: Money fed: 0.95

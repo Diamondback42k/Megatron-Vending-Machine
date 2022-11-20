@@ -31,7 +31,7 @@ public class UserOutput {
     public static void displayHomeScreen() {
         System.out.println();
         System.out.println("***************************************************");
-        System.out.println("                      Home");
+        System.out.println("          Welcome To Vending Machine 3000");
         System.out.println("***************************************************");
         System.out.println();
     }

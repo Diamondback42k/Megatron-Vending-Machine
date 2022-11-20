@@ -7,6 +7,7 @@ import javax.imageio.IIOException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
@@ -16,6 +17,7 @@ import static com.techelevator.ui.UserOutput.*;
 
 
 public class VendingMachine {
+    private static final DecimalFormat df = new DecimalFormat("0.00");
 
     public static double totalBalance = 0.00;
     private static List<Item> items = new ArrayList<>();
@@ -111,7 +113,7 @@ public class VendingMachine {
             logger.addHandler(fileHandler);
             SimpleFormatter formatter = new SimpleFormatter();
             fileHandler.setFormatter(formatter);
-            logger.info("Money fed: " + totalBalance);
+            logger.info("Money fed: " + df.format(totalBalance));
         } catch (SecurityException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -138,7 +140,7 @@ public class VendingMachine {
                 findItem.setQuantity(quantity - newQty);
                 totalBalance -= calculatedPrice;
                 startLogger();
-                System.out.println("Dispensing Items: " + findItem.getName() + ", " + "$" + price);
+                System.out.println("Dispensing Items: " + findItem.getName() + ", " + "$" + df.format(calculatedPrice));
                 if (Objects.equals(findItem.getType(), "Candy")) {
                     System.out.println("Sugar, Sugar, so Sweet!");
                     System.out.println();
@@ -159,7 +161,7 @@ public class VendingMachine {
                 System.out.println("Not enough funds");
                 System.out.println();
             }
-            if (newQty > findItem.getQuantity()) {
+            else if (newQty > findItem.getQuantity()) {
                 //THIS IS HAVING ANY QTY SELECTION ABOVE 2 RETURN ITEM OUT OF STOCK,IT WORKS GREAT BESIDES THAT
                 System.out.println("Items out of stock");
                 System.out.println();
@@ -178,7 +180,12 @@ public class VendingMachine {
     }
 
     public static void finishTransaction (){
-        UserInput.getFinishTransaction();
+        System.out.println("Please take your change: " + df.format(totalBalance));
+
+        System.out.println();
+        System.out.println("Thank you for your purchase!");
+
+//        UserInput.getFinishTransaction();
     }
 }
 
