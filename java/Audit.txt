@@ -1,2 +1,4 @@
-Nov 20, 2022 9:57:07 AM com.techelevator.application.VendingMachine startLogger
-INFO: Money fed: 0.95
+Nov 20, 2022 1:41:44 PM com.techelevator.application.VendingMachine auditLogger
+INFO: MONEY FED: $33.0
+Nov 20, 2022 1:42:05 PM com.techelevator.application.VendingMachine auditLogger
+INFO: MONEY FED: $28.95

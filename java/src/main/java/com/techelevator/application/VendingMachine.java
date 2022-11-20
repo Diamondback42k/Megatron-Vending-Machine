@@ -2,8 +2,6 @@ package com.techelevator.application;
 import com.techelevator.models.Item;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
-
-import javax.imageio.IIOException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,10 +13,9 @@ import java.util.logging.SimpleFormatter;
 
 import static com.techelevator.ui.UserOutput.*;
 
-
 public class VendingMachine {
-    private static final DecimalFormat df = new DecimalFormat("0.00");
 
+    private static final DecimalFormat df = new DecimalFormat("0.00");
     public static double totalBalance = 0.00;
     private static List<Item> items = new ArrayList<>();
     public static void loadFile() {
@@ -97,7 +94,6 @@ public class VendingMachine {
         return itemFound;
     }
 
-
     public static void feedingMoney() {
         moneyAdded();
         String moneyInput = UserInput.getFeedMoney();
@@ -105,21 +101,22 @@ public class VendingMachine {
         totalBalance += total;
     }
 
-    public static void startLogger() {
-        Logger logger = Logger.getLogger("Audit.txt");
-        FileHandler fileHandler;
+    public static void auditLogger() {
+        Logger logger = Logger.getLogger("");
+        FileHandler fh;
         try {
-            fileHandler = new FileHandler("Audit.txt");
-            logger.addHandler(fileHandler);
+            fh = new FileHandler("Audit.txt");
+            logger.addHandler(fh);
             SimpleFormatter formatter = new SimpleFormatter();
-            fileHandler.setFormatter(formatter);
-            logger.info("Money fed: " + df.format(totalBalance));
+            fh.setFormatter(formatter);
+            logger.info("MONEY FED: $" + totalBalance);
         } catch (SecurityException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 // ALL that is left to do is the thanksgiving discount, the return change, and to perfect the audit log
     public static void itemSelection() {
         displayInventory(items);
@@ -139,7 +136,7 @@ public class VendingMachine {
                 int quantity = findItem.getQuantity();
                 findItem.setQuantity(quantity - newQty);
                 totalBalance -= calculatedPrice;
-                startLogger();
+                auditLogger();
                 System.out.println("Dispensing Items: " + findItem.getName() + ", " + "$" + df.format(calculatedPrice));
                 if (Objects.equals(findItem.getType(), "Candy")) {
                     System.out.println("Sugar, Sugar, so Sweet!");
@@ -175,17 +172,11 @@ public class VendingMachine {
         }
     }
 
-    public class auditLogger {
-        Logger logger = Logger.getLogger("Audit.txt");
-    }
-
     public static void finishTransaction (){
         System.out.println("Please take your change: " + df.format(totalBalance));
-
         System.out.println();
         System.out.println("Thank you for your purchase!");
-
-//        UserInput.getFinishTransaction();
+        UserInput.getFinishTransaction();
     }
 }
 

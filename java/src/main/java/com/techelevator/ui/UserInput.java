@@ -56,8 +56,7 @@ public class UserInput {
         String choice = scanner.nextLine();
         if (choice.equals("F")) {
             System.out.println("Thank you for your purchase!");
-        } else{
-            System.exit(0);
+            System.exit(1);
         } //NEED TO FIND A WAY TO BREAK CODE BOTH WHEN THEY SAY FINISH AND EXIT , IT IS NOT HAPPENING
     }
 }
