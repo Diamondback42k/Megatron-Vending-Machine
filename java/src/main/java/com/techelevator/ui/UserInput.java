@@ -45,25 +45,20 @@ public class UserInput {
         }
     }
 
-    public static String getFeedMoney(){
+    public static String getFeedMoney() {
         Scanner scanner = new Scanner(System.in);
         String moneyFed = scanner.nextLine();
         return moneyFed;
     }
 
-    public static String getSelectItem(){
-        Scanner scanner = new Scanner(System.in);
-        String itemSelected = scanner.nextLine();
-        return itemSelected;
-    }
-
-    public static String getFinishTransaction(){
+    public static void getFinishTransaction() {
         System.out.println();
-       String choice = scanner.nextLine();
-       if(choice.equals("Exit")){
-           return "Exit";
-       }
-           return "";
+        String choice = scanner.nextLine();
+        if (choice.equals("F")) {
+            System.out.println("Thank you for your purchase!");
+        } else{
+            System.exit(0);
+        } //NEED TO FIND A WAY TO BREAK CODE BOTH WHEN THEY SAY FINISH AND EXIT , IT IS NOT HAPPENING
     }
 }
 

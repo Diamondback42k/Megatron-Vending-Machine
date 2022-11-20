@@ -1,24 +1,24 @@
 package com.techelevator.application;
-
-//import com.sun.tools.javac.jvm.Items;
 import com.techelevator.models.Item;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
+
+import javax.imageio.IIOException;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.text.DecimalFormat;
+import java.io.IOException;
 import java.util.*;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
-import static com.techelevator.ui.UserInput.getSecondMenuOption;
-import static com.techelevator.ui.UserInput.getSelectItem;
 import static com.techelevator.ui.UserOutput.*;
 
-public class VendingMachine {
-    private static final DecimalFormat df = new DecimalFormat("0.00");
-    private static double totalBalance = 0.00;
-    private static List<Item> items = new ArrayList<>();
-    File file = new File("catering.csv");
 
+public class VendingMachine {
+
+    public static double totalBalance = 0.00;
+    private static List<Item> items = new ArrayList<>();
     public static void loadFile() {
         File file = new File("catering.csv");
         try {
@@ -26,38 +26,35 @@ public class VendingMachine {
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
                 String[] lineArr = line.split("\\,");
-                String itemLocation = lineArr[0];  //Map method identify and give value to each slot, Map<String, Integer>
+                String itemLocation = lineArr[0];
                 String name = lineArr[1];
                 double price = Double.parseDouble(lineArr[2]);
                 String type = lineArr[3];
-                int quantity = 6;
                 if (type.equals("Candy")) {
-                    Item candy = new Candy(itemLocation, name, price, type, quantity);
+                    Item candy = new Candy(itemLocation, name, price, type);
                     items.add(candy);
                 } else if (type.equals("Drink")) {
-                    Item drinks = new Drinks(itemLocation, name, price, type, quantity);
+                    Item drinks = new Drinks(itemLocation, name, price, type);
                     items.add(drinks);
                 } else if (type.equals("Gum")) {
-                    Item gum = new Gum(itemLocation, name, price, type, quantity);
+                    Item gum = new Gum(itemLocation, name, price, type);
                     items.add(gum);
                 } else if (type.equals("Munchy")) {
-                    Item munchy = new Munchy(itemLocation, name, price, type, quantity);
+                    Item munchy = new Munchy(itemLocation, name, price, type);
                     items.add(munchy);
                 }
-//                Item food = new Item(itemLocation, name, price, type);
-//                items.add(food);
             }
         } catch (FileNotFoundException e) {
             System.out.println("Problem with file");
         }
     }
+
     public void run() {
         loadFile();
         while (true) {
             UserOutput.displayHomeScreen();
             UserOutput.displayLevel1Options();
             String choice = UserInput.getHomeScreenOption();
-
             if (choice.equals("display")) {
                 System.out.println("display vending items");
                 for (Item item : items) {
@@ -81,7 +78,7 @@ public class VendingMachine {
             } else if (choice.equals("Select Item")) {
                 itemSelection();
             } else if (choice.equals("Finish Transaction")) {
-                break;
+                finishTransaction();
             }
         }
     }
@@ -100,13 +97,28 @@ public class VendingMachine {
 
 
     public static void feedingMoney() {
-        Scanner userInput = new Scanner(System.in);
-        System.out.println("Insert money; $1.00, $5.00, $10.00, or $20.00");
-        String moneyInput = userInput.nextLine();
+        moneyAdded();
+        String moneyInput = UserInput.getFeedMoney();
         double total = Double.parseDouble(moneyInput);
         totalBalance += total;
     }
 
+    public static void startLogger() {
+        Logger logger = Logger.getLogger("Audit.txt");
+        FileHandler fileHandler;
+        try {
+            fileHandler = new FileHandler("Audit.txt");
+            logger.addHandler(fileHandler);
+            SimpleFormatter formatter = new SimpleFormatter();
+            fileHandler.setFormatter(formatter);
+            logger.info("Money fed: " + totalBalance);
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+// ALL that is left to do is the thanksgiving discount, the return change, and to perfect the audit log
     public static void itemSelection() {
         displayInventory(items);
         Scanner scanner = new Scanner(System.in);
@@ -114,9 +126,59 @@ public class VendingMachine {
         System.out.println("Please make your selection by entering the slot number: ");
         String slotInput = scanner.nextLine();
         Item findItem = findItem(slotInput);
-        if (slotInput. {
-
+        if (items.contains(findItem)) {
+            Scanner input = new Scanner(System.in);
+            System.out.println("QTY: ");
+            String qty = input.nextLine();
+            int newQty = Integer.parseInt(qty);
+            double price = findItem.getPrice();
+            double calculatedPrice = price * newQty;
+            if (newQty <= findItem.getQuantity() && totalBalance >= calculatedPrice) {
+                int quantity = findItem.getQuantity();
+                findItem.setQuantity(quantity - newQty);
+                totalBalance -= calculatedPrice;
+                startLogger();
+                System.out.println("Dispensing Items: " + findItem.getName() + ", " + "$" + price);
+                if (Objects.equals(findItem.getType(), "Candy")) {
+                    System.out.println("Sugar, Sugar, so Sweet!");
+                    System.out.println();
+                }
+                if (Objects.equals(findItem.getType(), "Drink")) {
+                    System.out.println("Drinky, Drinky, Slurp Slurp!");
+                    System.out.println();
+                }
+                if (Objects.equals(findItem.getType(), "Gum")) {
+                    System.out.println("Chewy, Chewy, Lots O Bubbles!");
+                    System.out.println();
+                }
+                if (Objects.equals(findItem.getType(), "Munchy")) {
+                    System.out.println("Munchy, Munchy, so Good!");
+                    System.out.println();
+                }
+            } else if (totalBalance < calculatedPrice) {
+                System.out.println("Not enough funds");
+                System.out.println();
+            }
+            if (newQty > findItem.getQuantity()) {
+                //THIS IS HAVING ANY QTY SELECTION ABOVE 2 RETURN ITEM OUT OF STOCK,IT WORKS GREAT BESIDES THAT
+                System.out.println("Items out of stock");
+                System.out.println();
+            }
         }
+        if (!items.contains(findItem)) {
+            System.out.println("Item not found, please choose the correct slot number: ");
+            System.out.println();
+            itemSelection();
+            System.out.println();
+        }
+    }
+
+    public class auditLogger {
+        Logger logger = Logger.getLogger("Audit.txt");
+    }
+
+    public static void finishTransaction (){
+        UserInput.getFinishTransaction();
     }
 }
 

@@ -1,5 +1,4 @@
 package com.techelevator.application;
-import java.util.Map;
 
 public interface ItemInterface {
     String getLocation();
@@ -7,5 +6,4 @@ public interface ItemInterface {
     String getType();
     double getPrice();
     int getQuantity();
-    double getBalance();
 }
