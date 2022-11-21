@@ -2,8 +2,6 @@ package com.techelevator.application;
 import com.techelevator.models.Item;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
-
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
@@ -116,7 +114,6 @@ public class VendingMachine {
             double calculatedPrice = price * newQty;            //This represents $$ being subtracted ($1
             int discount = (newQty/2);
             if (newQty <= findItem.getQuantity() && totalBalance >= calculatedPrice) {
-
                 if (newQty >= 2 && newQty <= 6) {
                     System.out.println("Decepticon Thanksgiving Discount!");
                     System.out.println();
@@ -127,11 +124,6 @@ public class VendingMachine {
                     findItem.setQuantity(quantity - newQty);
                     totalBalance -= calculatedPrice;
                 }
-//
-//   buy one item, get one dollar off any second item. After an item is purchased with the discount the discount resets.
-//   For example, if a third item is purchased a discount IS NOT applied. If a fourth item is purchased the discount DOES apply, and so on.
-
-
                 AuditLog.write(findItem.getName() + " " + findItem.getLocation() + ", " + "MONEY FED: $" + df.format(totalBalance) + "\n");
                 System.out.println("Dispensing Items: " + findItem.getName() + ", " + "Total: "  + "$" + df.format(calculatedPrice));
                 if (Objects.equals(findItem.getType(), "Candy")) {

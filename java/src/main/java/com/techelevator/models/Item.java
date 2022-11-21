@@ -1,5 +1,4 @@
 package com.techelevator.models;
-
 import com.techelevator.application.ItemInterface;
 import com.techelevator.application.VendingMachine;
 

@@ -1,5 +1,4 @@
 package com.techelevator.application;
-
 import com.techelevator.models.Item;
 
 public class Candy extends Item {
