@@ -4,12 +4,8 @@ import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.*;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 import static com.techelevator.ui.UserOutput.*;
 
@@ -18,6 +14,7 @@ public class VendingMachine {
     private static final DecimalFormat df = new DecimalFormat("0.00");
     public static double totalBalance = 0.00;
     private static List<Item> items = new ArrayList<>();
+
     public static void loadFile() {
         File file = new File("catering.csv");
         try {
@@ -62,7 +59,7 @@ public class VendingMachine {
             } else if (choice.equals("purchase")) {
                 secondMenuOption();
             } else if (choice.equals("exit")) {
-                break;
+                System.exit(1);
             }
         }
     }
@@ -101,23 +98,6 @@ public class VendingMachine {
         totalBalance += total;
     }
 
-    public static void auditLogger() {
-        Logger logger = Logger.getLogger("");
-        FileHandler fh;
-        try {
-            fh = new FileHandler("Audit.txt");
-            logger.addHandler(fh);
-            SimpleFormatter formatter = new SimpleFormatter();
-            fh.setFormatter(formatter);
-            logger.info("MONEY FED: $" + totalBalance);
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-// ALL that is left to do is the thanksgiving discount, the return change, and to perfect the audit log
     public static void itemSelection() {
         displayInventory(items);
         Scanner scanner = new Scanner(System.in);
@@ -136,35 +116,36 @@ public class VendingMachine {
                 int quantity = findItem.getQuantity();
                 findItem.setQuantity(quantity - newQty);
                 totalBalance -= calculatedPrice;
-                auditLogger();
+//
+//   buy one item, get one dollar off any second item. After an item is purchased with the discount the discount resets.
+//   For example, if a third item is purchased a discount IS NOT applied. If a fourth item is purchased the discount DOES apply, and so on.
+
+                if (newQty % 2== 0) {
+                    newQty / 2
+                }
+                AuditLog.write(findItem.getName() + " " + findItem.getLocation() + ", " + "MONEY FED: $" + totalBalance + "\n");
                 System.out.println("Dispensing Items: " + findItem.getName() + ", " + "$" + df.format(calculatedPrice));
                 if (Objects.equals(findItem.getType(), "Candy")) {
                     System.out.println("Sugar, Sugar, so Sweet!");
                     System.out.println();
-                }
-                if (Objects.equals(findItem.getType(), "Drink")) {
+                } if (Objects.equals(findItem.getType(), "Drink")) {
                     System.out.println("Drinky, Drinky, Slurp Slurp!");
                     System.out.println();
-                }
-                if (Objects.equals(findItem.getType(), "Gum")) {
+                } if (Objects.equals(findItem.getType(), "Gum")) {
                     System.out.println("Chewy, Chewy, Lots O Bubbles!");
                     System.out.println();
-                }
-                if (Objects.equals(findItem.getType(), "Munchy")) {
+                } if (Objects.equals(findItem.getType(), "Munchy")) {
                     System.out.println("Munchy, Munchy, so Good!");
                     System.out.println();
                 }
             } else if (totalBalance < calculatedPrice) {
                 System.out.println("Not enough funds");
                 System.out.println();
-            }
-            else if (newQty > findItem.getQuantity()) {
-                //THIS IS HAVING ANY QTY SELECTION ABOVE 2 RETURN ITEM OUT OF STOCK,IT WORKS GREAT BESIDES THAT
+            } else if (newQty > findItem.getQuantity()) {
                 System.out.println("Items out of stock");
                 System.out.println();
             }
-        }
-        if (!items.contains(findItem)) {
+        } if (!items.contains(findItem)) {
             System.out.println("Item not found, please choose the correct slot number: ");
             System.out.println();
             itemSelection();
@@ -174,8 +155,6 @@ public class VendingMachine {
 
     public static void finishTransaction (){
         System.out.println("Please take your change: " + df.format(totalBalance));
-        System.out.println();
-        System.out.println("Thank you for your purchase!");
         UserInput.getFinishTransaction();
     }
 }

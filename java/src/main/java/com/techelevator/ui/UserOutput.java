@@ -2,10 +2,6 @@ package com.techelevator.ui;
 
 import com.techelevator.application.*;
 import com.techelevator.models.Item;
-//import jdk.swing.interop.SwingInterOpUtils;
-
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 import java.util.*;
 

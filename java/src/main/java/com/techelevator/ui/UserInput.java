@@ -23,7 +23,7 @@ public class UserInput {
             return "display";
         } else if (option.equals("P")) {
             return "purchase";
-        } else if (option.equals("S")) {
+        } else if (option.equals("E")) {
             return "exit";
         } else {
             return "";
@@ -52,12 +52,8 @@ public class UserInput {
     }
 
     public static void getFinishTransaction() {
-        System.out.println();
-        String choice = scanner.nextLine();
-        if (choice.equals("F")) {
             System.out.println("Thank you for your purchase!");
             System.exit(1);
-        } //NEED TO FIND A WAY TO BREAK CODE BOTH WHEN THEY SAY FINISH AND EXIT , IT IS NOT HAPPENING
     }
 }
 
