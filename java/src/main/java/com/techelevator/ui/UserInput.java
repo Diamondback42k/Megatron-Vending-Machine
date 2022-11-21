@@ -52,7 +52,9 @@ public class UserInput {
     }
 
     public static void getFinishTransaction() {
+        System.out.println();
             System.out.println("Thank you for your purchase!");
+        System.out.println("ALL HAIL MEGATRON!");
             System.exit(1);
     }
 }

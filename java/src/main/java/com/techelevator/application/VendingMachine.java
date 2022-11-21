@@ -2,6 +2,8 @@ package com.techelevator.application;
 import com.techelevator.models.Item;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
+
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
@@ -111,8 +113,22 @@ public class VendingMachine {
             String qty = input.nextLine();
             int newQty = Integer.parseInt(qty);
             double price = findItem.getPrice();
-            double calculatedPrice = price * newQty;
+            double calculatedPrice = price * newQty;            //This represents $$ being subtracted ($1
+            int discount = (newQty/2);
             if (newQty <= findItem.getQuantity() && totalBalance >= calculatedPrice) {
+                if (newQty >= 2 && newQty <= 6) {
+                    System.out.println("Decepticon Thanksgiving Discount!");
+                    System.out.println();
+                    System.out.println("-" + "$" + discount + " Off your purchase!");
+                    System.out.println();
+                    calculatedPrice -= discount;
+//                } else if(newQty == 3 || newQty == 5 ){
+//                    System.out.println("Happy Thanksgiving Discount!");
+//                    System.out.println();
+//                    System.out.println("-" + "$" + discount + " Off your purchase!");
+                }
+//
+
                 int quantity = findItem.getQuantity();
                 findItem.setQuantity(quantity - newQty);
                 totalBalance -= calculatedPrice;
@@ -120,11 +136,9 @@ public class VendingMachine {
 //   buy one item, get one dollar off any second item. After an item is purchased with the discount the discount resets.
 //   For example, if a third item is purchased a discount IS NOT applied. If a fourth item is purchased the discount DOES apply, and so on.
 
-                if (newQty % 2== 0) {
-                    newQty / 2
-                }
-                AuditLog.write(findItem.getName() + " " + findItem.getLocation() + ", " + "MONEY FED: $" + totalBalance + "\n");
-                System.out.println("Dispensing Items: " + findItem.getName() + ", " + "$" + df.format(calculatedPrice));
+
+                AuditLog.write(findItem.getName() + " " + findItem.getLocation() + ", " + "MONEY FED: $" + df.format(totalBalance) + "\n");
+                System.out.println("Dispensing Items: " + findItem.getName() + ", " + "Total: "  + "$" + df.format(calculatedPrice));
                 if (Objects.equals(findItem.getType(), "Candy")) {
                     System.out.println("Sugar, Sugar, so Sweet!");
                     System.out.println();
@@ -154,7 +168,8 @@ public class VendingMachine {
     }
 
     public static void finishTransaction (){
-        System.out.println("Please take your change: " + df.format(totalBalance));
+        System.out.println("Please take your change: " + "$" + df.format(totalBalance));
+        System.out.println("New Balance: " + "$" + df.format(totalBalance*0.00));
         UserInput.getFinishTransaction();
     }
 }
